@@ -2,58 +2,13 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Message from "../components/Message";
 import { message } from "../interfaces/interfaces";
+import useUser from "../contexts/useUser";
 
 export default function RoomPage() {
   const [nextMessage, setNextMessage] = useState<string>("");
-  const [messages, setMessages] = useState<message[]>([
-    {
-      mine: false,
-      message: "hey",
-      user: "user1",
-    },
-    {
-      mine: true,
-      message: "hey",
-      user: "user1",
-    },
-    {
-      mine: false,
-      message: "hey",
-      user: "user1",
-    },
-    {
-      mine: false,
-      message: "hey",
-      user: "user1",
-    },
-    {
-      mine: true,
-      message: "hey",
-      user: "user1",
-    },
-    {
-      mine: false,
-      message: "hey",
-      user: "user1",
-    },
-    {
-      mine: false,
-      message: "hey",
-      user: "user1",
-    },
-    {
-      mine: true,
-      message: "hey",
-      user: "user1",
-    },
-    {
-      mine: false,
-      message: "hey",
-      user: "user1",
-    },
-  ]);
+  const [messages, setMessages] = useState<message[]>([]);
   const param = useParams();
-  const [username] = useState<string>("User1");
+  const {username} = useUser();
 
   const handleSendMessage = () => {
     // send message using socket.io

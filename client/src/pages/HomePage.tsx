@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useSocket from "../contexts/useSocket";
+import useUser from "../contexts/useUser";
 
 export default function HomePage() {
   const { socket } = useSocket();
 
   const [roomName, setRoomName] = useState<string>("");
-  const [username, setUsername] = useState<string>("");
+  const {username, setUsername} = useUser();
 
   const navigate = useNavigate();
 

@@ -5,7 +5,7 @@ interface Prop {
     children: JSX.Element | JSX.Element[] | string  
 }
 
-export default function socketProvider({children}: Prop) {
+export default function SocketProvider({children}: Prop) {
   return (
     <socketContext.Provider value={{socket: io('http://localhost:3000')}} >
         {children}
