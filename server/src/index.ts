@@ -15,7 +15,13 @@ io.on('connection', (socket) => {
     console.log('a user connected', socket.id);
 
 
-    socket.id
+    socket.on('join-room', ({roomName, username}) => {
+      if (typeof roomName !== 'string' || typeof username !== 'string') throw Error('Bad request');
+      console.log('user:', username, 'wants to join room:', roomName, 'id:', socket.id)
+      socket.join(roomName); // join the room
+      io.to(socket.id).emit('join-room', {roomName});
+    });
+
 
     socket.on('disconnect', () => {
       console.log('user disconnected');
