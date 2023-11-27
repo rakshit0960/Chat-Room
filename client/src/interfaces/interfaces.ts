@@ -1,5 +1,6 @@
-export interface message {
+export interface IMessage {
+    roomName: string
     id: string
-    user: string,
+    username: string
     message: string
 }
