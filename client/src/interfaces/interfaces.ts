@@ -1,5 +1,5 @@
 export interface message {
-    mine: boolean
+    id: string
     user: string,
     message: string
 }

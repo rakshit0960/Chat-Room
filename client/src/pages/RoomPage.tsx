@@ -1,25 +1,28 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useRoutes } from "react-router-dom";
 import Message from "../components/Message";
 import { message } from "../interfaces/interfaces";
 import useUser from "../contexts/useUser";
+import useSocket from "../contexts/useSocket";
 
 export default function RoomPage() {
-  const [nextMessage, setNextMessage] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<message[]>([]);
-  const param = useParams();
+  const {roomName} = useParams();
   const {username} = useUser();
+  const {socket} = useSocket();
 
   const handleSendMessage = () => {
     // send message using socket.io
-    setMessages(messages => [...messages, {mine: true, user: username, message: nextMessage}]);
-    setNextMessage('');
+    socket.emit('send-message', {roomName,username, id: socket.id, message})
+    setMessage('');
   }
+
   return (
     <div className="w-full h-screen flex flex-col justify-between px-2" onKeyDown={e => (e.key === "Enter") ? handleSendMessage() : null}>
       <div className="flex justify-between border-b-2 px-16 py-6 text-4xl">
         <div>Welcome {username}</div>
-        <div>{`${param.roomName}`}</div>
+        <div>{`${{roomName}.roomName}`}</div>
       </div>
       <div className="flex flex-col justify-end gap-6 pt-2">
         <div className="flex flex-col gap-6">
@@ -32,8 +35,8 @@ export default function RoomPage() {
             type="text"
             className="border-2 col-span-5 px-6 rounded border-black"
             placeholder="message"
-            value={nextMessage}
-            onChange={(e) => setNextMessage(e.target.value)}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
           />
           <button
             className="border-2 w-full rounded border-black"
