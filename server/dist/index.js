@@ -22,14 +22,14 @@ io.on('connection', (socket) => {
         socket.join(roomName); // join the room
         io.to(socket.id).emit('join-room', { roomName }); // send emit to join room
     });
-    socket.on('send-message', ({ roomName, username, id, message }) => {
+    socket.on('send-message', ({ roomName, id, username, message }) => {
         if (typeof roomName !== 'string' || typeof username !== 'string' || typeof id !== 'string' || typeof message !== 'string')
             throw Error('Bad request');
         console.log('send message:', { roomName, id, username, message });
-        if (socket.rooms.has(roomName))
+        if (!socket.rooms.has(roomName))
             return; // check if id is in room 
         // send message event to every one in the room
-        socket.in(roomName).emit('send-message', { roomName, username, id, message });
+        io.sockets.in(roomName).emit('send-message', { roomName, id, username, message });
     });
     socket.on('disconnect', () => {
         console.log('user disconnected');
