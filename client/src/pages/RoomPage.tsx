@@ -10,9 +10,10 @@ import { NewMessageInput } from "../components/NewMessageInput";
 export default function RoomPage() {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<IMessage[]>([]);
-  const { roomName } = useParams();
+  let { roomName } = useParams<{roomName: string}>();
   const { username } = useUser();
   const { socket } = useSocket();
+  roomName = typeof(roomName) == "string" ? roomName : " "; 
 
   const handleSendMessage = () => {
     if (!username || !message) return;

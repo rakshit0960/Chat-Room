@@ -1,8 +1,8 @@
-import express from 'express';
+import express, { Express } from 'express';
 import { createServer } from 'node:http';
 import { Server } from 'socket.io';
 
-const app = express();
+const app: Express = express();
 const server = createServer(app);
 
 const io = new Server(server, {
@@ -39,6 +39,8 @@ io.on('connection', (socket) => {
     console.log('user disconnected');
   });
 });
+
+app.get('/', (req, res) => res.json({staus: 'api is working'}))
 server.listen(3000, () => {
   console.log('server running at http://localhost:3000');
 });

@@ -6,8 +6,20 @@ services:
       context: server/
       target: devlopment
     volumes:
-      - ./server:/app
+      - ./server:/app/api
       - /app/node_modules/
     ports:
       - 3000:3000
     command: npm run dev
+
+  ui:
+    build: 
+      context: client/
+      target: devlopment
+    volumes:
+      - ./client:/app/ui
+      - /app/node_modules/
+    ports:
+      - 5173:5173
+    command: npm run dev
+    

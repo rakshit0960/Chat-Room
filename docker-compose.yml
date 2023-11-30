@@ -7,4 +7,9 @@ services:
       target: production
     ports:
       - 3000:3000
-    
+  ui:
+    build: 
+      context: client/
+      target: devlopment
+    ports:
+      - 8080:8080
