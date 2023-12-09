@@ -2,7 +2,7 @@
 # Chat-App
 
 A basic chat app made using sockets and node js for the backend and React for the Front End,
-which is contained using Docker 
+which is containrised using Docker 
 
 
 ## Run Locally
