@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.8'
 
 services:
   api:
@@ -10,6 +10,8 @@ services:
   ui:
     build: 
       context: client/
-      target: devlopment
+      target: production
+    depends_on:
+      - api
     ports:
       - 8080:8080

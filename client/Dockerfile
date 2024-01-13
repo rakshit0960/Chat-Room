@@ -1,4 +1,4 @@
-FROM node:18-alpine as devlopment
+FROM node:alpine as devlopment
 
 WORKDIR /app/ui
 
@@ -14,9 +14,7 @@ CMD [ "npm", "run", "dev" ]
 
 
 
-
-
-FROM node:18-alpine as production
+FROM node:alpine as production
 
 WORKDIR /app/ui
 
@@ -28,4 +26,6 @@ COPY . .
 
 EXPOSE 8080
 
-CMD [ "npm", "run", "dev" ]
+RUN npm run build
+
+CMD [ "npm", "run", "preview" ]

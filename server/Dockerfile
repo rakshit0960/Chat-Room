@@ -1,4 +1,4 @@
-FROM node:18-alpine as devlopment
+FROM node:alpine as devlopment
 
 WORKDIR /app/api
 
@@ -14,10 +14,11 @@ EXPOSE 3000
 
 RUN npm run build
 
+CMD [ "npm", "run", "dev" ]
 
 
 
-FROM node:18-alpine as production
+FROM node:alpine as production
 
 WORKDIR /app/api
 
@@ -29,4 +30,4 @@ COPY --from=devlopment app/api/dist ./dist
 
 EXPOSE 3000
  
-CMD ["node", "dist/index.js"]
+CMD ["npm", "run", "start"]

@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
   });
 });
 
-app.get('/', (req, res) => res.json({staus: 'api is working'}))
+app.get('/', (req, res) => res.json({status: 'ok', message: 'server is running'}))
 server.listen(3000, () => {
   console.log('server running at http://localhost:3000');
 });

@@ -7,7 +7,7 @@ services:
       target: devlopment
     volumes:
       - ./server:/app/api
-      - /app/node_modules/
+      - /app/api/node_modules/
     ports:
       - 3000:3000
     command: npm run dev
@@ -18,8 +18,10 @@ services:
       target: devlopment
     volumes:
       - ./client:/app/ui
-      - /app/node_modules/
+      - /app/ui/node_modules/
     ports:
-      - 5173:5173
+      - 8080:8080
+    depends_on:
+      - api
     command: npm run dev
     
