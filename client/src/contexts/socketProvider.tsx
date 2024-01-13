@@ -7,7 +7,7 @@ interface Prop {
 
 export default function SocketProvider({children}: Prop) {
   return (
-    <socketContext.Provider value={{socket: io('http://localhost:3000')}} >
+    <socketContext.Provider value={{socket: io(import.meta.env.VITE_SERVER_URL)}} >
         {children}
     </socketContext.Provider>
   )
