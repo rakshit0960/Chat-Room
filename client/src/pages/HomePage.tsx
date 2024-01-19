@@ -40,7 +40,7 @@ export default function HomePage() {
         <h1 className="text-center text-4xl mb-8">Join a Room</h1>
         <div className="flex flex-col gap-2">
           <label htmlFor="username" className="text-lg">
-            Username:
+            Name:
           </label>
           <input
             required={true}
