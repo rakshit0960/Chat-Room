@@ -1,9 +1,13 @@
 import express, { Express } from 'express';
 import { createServer } from 'node:http';
 import { Server } from 'socket.io';
+import dotenv from 'dotenv'
+dotenv.config();
 
 const app: Express = express();
 const server = createServer(app);
+
+const PORT = process.env.PORT || 3000
 
 const io = new Server(server, {
   cors: {
@@ -41,6 +45,6 @@ io.on('connection', (socket) => {
 });
 
 app.get('/', (req, res) => res.json({status: 'ok', message: 'server is running'}))
-server.listen(3000, () => {
-  console.log('server running at http://localhost:3000');
+server.listen(PORT, () => {
+  console.log(`server running at http://localhost:${PORT}`);
 });

@@ -8,10 +8,19 @@ services:
     ports:
       - 3000:3000
   ui:
+    depends_on:
+      - api
     build: 
       context: client/
       target: production
-    depends_on:
-      - api
     ports:
       - 8080:8080
+  nginx:
+    depends_on:
+      - ui
+      - api
+    build: 
+      context: nginx/ 
+    ports:
+      - 80:80
+

@@ -1,13 +1,14 @@
 import { io } from "socket.io-client";
 import socketContext from "./socketContest";
-
 interface Prop {
-    children: JSX.Element | JSX.Element[] | string  
+  children: JSX.Element | JSX.Element[] | string  
 }
+
+const baseUrl = import.meta.env.VITE_BASE_URL
 
 export default function SocketProvider({children}: Prop) {
   return (
-    <socketContext.Provider value={{socket: io(import.meta.env.VITE_SERVER_URL)}} >
+    <socketContext.Provider value={{socket: io(baseUrl)}} >
         {children}
     </socketContext.Provider>
   )
