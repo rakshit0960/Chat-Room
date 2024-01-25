@@ -28,3 +28,6 @@ Start the server for production
 ## 🛠 Skills
 NodeJS, Socket.io, React, Typescript, Docker, docker-compose
 
+## Screen Shots
+
+![Chat](ScreenShots/exampleChat.png)
